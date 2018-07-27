@@ -42,4 +42,4 @@ vignettes/*.pdf
 
 # PDF files of articles (except Open Access articles)
 pdfs/*.pdf
-!pdfs/[OA] *.pdf
+!pdfs/[OA]*.pdf
