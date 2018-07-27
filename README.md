@@ -1,1 +1,1 @@
-# determinants-of-ecstasy-use-and-harm-reduction-practices
+# Determinants of ecstasy use and harm reduction strategies
