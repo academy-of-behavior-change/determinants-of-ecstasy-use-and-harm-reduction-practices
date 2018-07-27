@@ -3,6 +3,8 @@ title: "Determinants of ecstasy use and harm reduction practices"
 author: "Gjalt-Jorn Peters & Marion Oomes"
 date: "`r format(Sys.time(), '%H:%M:%S on %Y-%m-%d %Z (GMT%z)')`"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -62,35 +64,61 @@ options(figCapCounter = 0);
 ```
 
 ```{r first-query-setup}
-# queries[[length(queries) + 1]] <-
-#   list(date = ymd("2018-07-01"),
-#        query = query_requiredConcepts(conceptName="Exposure therapy query",
-#                                       query_conceptTerms(conceptName = "Cognitive Behavioral Therapy",
-#                                                          "cognitive behavio* therapy",
-#                                                          "cbt"),
-#                                       query_conceptTerms(conceptName = "Exposure Therapy",
-#                                                          "exposure"),
-#                                       query_conceptTerms(conceptName = "Target population",
-#                                                          "child*",
-#                                                          "adolescent*",
-#                                                          "youth"),
-#                                       query_conceptTerms(conceptName = "Disorder",
-#                                                          "anxiety",
-#                                                          "fear")),
-#        databases = c(psycinfo = "RIS",
-#                      pubmed = "RIS"),
-#        fields = "title");
+queries[[length(queries) + 1]] <-
+  list(date = ymd("2018-07-01"),
+       query = query_requiredConcepts(conceptName="Determinants of ecstasy use and harm reducation strategies",
+                                      query_conceptTerms(conceptName = "Ecstasy",
+                                                         "clubdrug*",
+                                                         "club near drug*",
+                                                         "dance near drug*",
+                                                         "dancedrug*",
+                                                         "party near drug*",
+                                                         "partydrug*",
+                                                         "xtc",
+                                                         "mdma",
+                                                         "methylenedioxymethamphetamine",
+                                                         "3,4-methylenedioxymethamphetamine",
+                                                         "ecstasy"),
+                                      query_conceptTerms(conceptName = "Theory",
+                                                         "(theor*) or (attitud*) or (motivat* near functio*) or (mode*) or (norm*) or
+(perceived near control) or (pbc) or (’social cognitive’) or (self adj efficacy)
+or (stages near change) or (perceived adj (harm or risk or functions)) or
+(functional) or (outcome adj (expectancies or expectations)) or (sct) or (tpb)
+or (patter*) or (psychosoc*) or (health adj belief adj model) or (hbm)"),
+                                      query_conceptTerms(conceptName = "Determinants",
+                                                         "(determin*) or (facto*) or (variabl*) or (parameter*) or (reason*) or (caus*) or
+(motiv*) or (incentive*) or (correlat*) or (antecedent*) or (character*)"),
+                                      query_conceptTerms(conceptName = "Initiation",
+                                                         "(start*) or (commenc*) or (originat*) or (onset) or (initiat*) or (instigat*) or
+((use) not (user)) or (using) or (usage) or (establish*)"),
+                                      query_conceptTerms(conceptName = "Maintenacce",
+                                                         "(maint*) or (sustain*) or (continu*) or (uphold*) or (persist*) or (further*) or
+(prolong*)"),
+                                      query_conceptTerms(conceptName = "Cessation",
+                                                         "(end*) or (stop*) or (discontinu*) or (terminat*) or (ceas*) or (cessat*) or
+(abstain*) or (abstin*) or (quit*) or (remiss*) or (resolut*) or (recover*)"),
+                                      query_conceptTerms(conceptName = "Harm Reduction",
+                                                         "(harm or risk or damage or casualt*) and (reduc* or manag* or limit* or
+minimi*)"),
+                                      query_conceptTerms(conceptName = "Excluded",
+                                                         "((treatment not (‘not in treatment’ or ‘non-treatment’ or ‘non- treatment’ or
+‘no treatment’)) or rat or rats or mouse or mice or animal or monkey* or
+pigeon* or spectro* or cardio* or seroton* or dopamin* or neurotransm* or
+receptor* or psychiatr* or psychopath* or cell* or diagnos*)")),
+       databases = c(psycinfo = "RIS",
+                     pubmed = "RIS"),
+       fields = "title");
 ```
 
-<!-- ## First query, executed at: `r queries[[1]]$date;` -->
+## First query, executed at: `r queries[[1]]$date;`
 
-<!-- The first query is: -->
+The first query is:
 
 ```{r query1-visual, screenshot.force=FALSE}
-#plot(queries[[1]]$query);
+plot(queries[[1]]$query);
 ```
 
-<!-- In this plot, the 'AND' operator is visualised by a solid line, while the 'OR' operator is visualised by a dotted line. -->
+In this plot, the 'AND' operator is visualised by a solid line, while the 'OR' operator is visualised by a dotted line.
 
 <!-- In this query, the searched terms must occur in entries' `r queries[[1]]$fields` fields. -->
 
@@ -316,9 +344,9 @@ To do the actual extraction, there are two general routes an extractor can take.
 
 However, a disadvantage of R Studio is that R Markdown files are always wrapped. Wrapping means that to prevent the need for horizontal scrolling, long lines of text are displayed on multiple lines. Wrapping is almost always very useful. Text processors, for example, always wrap; text in books is always wrapped; and so is online content.
 
-However, extraction scripts contain 
+However, extraction scripts contain very long lines when closely related entities are extracted in list form; in that case, their explanation and examples are placed behind the entities and values to extract, 
 
-The second is to use an external editor. For extractors working in a Windows environment, Notepad++ is recommended; for extractors working in a Mac OS environment, BBEDit is recommended (extractors using a Linux distro pronan
+The second is to use an external editor. For extractors working in a Windows environment, Notepad++ is recommended; for extractors working in a Mac OS environment, BBEDit is recommended (extractors using a Linux distro probably already have their preferred text editors).
 
 ![`r figCap('Notepad++ when no file has been loaded yet')`](../img/notepadplusplus--empty.png)
 
