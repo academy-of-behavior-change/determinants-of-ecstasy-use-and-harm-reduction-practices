@@ -303,7 +303,9 @@ We will use a metabefor extraction script for the extraction of the data. The id
 
 These scripts are generated on the basis of two tables/spreadsheets. The first contains the entities to extract, such as study year, sample size, how variables were operationalised, and associations that were found. The second contains the valid values for each entity, to allow efficiently providing coders with examples, instructions, and to allow easy verification of the input.
 
-The extraction script template is available under the second tab in this section.
+The logged messages from this process are available in this section under the tab 'Logged messages', and the generated extraction script template (which is also written as a file to the repository) is included in a text area in the 'Extraction script template' for convenient inspection.
+
+#### Logged messages
 
 ```{r extraction-script-generation}
 
