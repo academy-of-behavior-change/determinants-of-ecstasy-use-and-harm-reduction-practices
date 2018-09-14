@@ -1,6 +1,6 @@
 ---
 title: "Determinants of ecstasy use and harm reduction practices"
-author: "Gjalt-Jorn Peters & Marion Oomes"
+author: "Gjalt-Jorn Peters & Marion Oomens"
 date: "`r format(Sys.time(), '%H:%M:%S on %Y-%m-%d %Z (GMT%z)')`"
 output: html_document
 editor_options: 
@@ -66,7 +66,7 @@ options(figCapCounter = 0);
 ```{r first-query-setup}
 queries[[length(queries) + 1]] <-
   list(date = ymd("2018-07-01"),
-       query = query_requiredConcepts(conceptName="Determinants of ecstasy use and harm reducation strategies",
+       query = query_requiredConcepts(conceptName="Determinants of\necstasy use\nand harm reducation strategies",
                                       query_conceptTerms(conceptName = "Ecstasy",
                                                          "clubdrug*",
                                                          "club near drug*",
@@ -115,6 +115,7 @@ receptor* or psychiatr* or psychopath* or cell* or diagnos*)")),
 The first query is:
 
 ```{r query1-visual, screenshot.force=FALSE}
+SetGraphStyle(queries[[1]]$query, rankdir = "LR")
 plot(queries[[1]]$query);
 ```
 
@@ -332,24 +333,58 @@ fullObject <-
 #### Extraction script template
 
 ```{r extraction-script-template, results="asis"}
-cat("\n\n<textarea rows='20' cols='50'>\n",
+cat("\n\n<pre><textarea rows='40' cols=124' style='font-family:monospace;font-size:11px;white-space:pre;'>",
     unlist(fullObject$rxsTemplate),
-    "\n</textarea>\n\n",
+    "</textarea></pre>\n\n",
     sep="\n");
 ```
 
 ### Extraction
 
+#### Software considerations
+
 To do the actual extraction, there are two general routes an extractor can take. The first is to use R Studio. The advantage of using R Studio is that, because each extraction script file (rxs file) is in fact an R Markdown file, it can be rendered into a report for the extracted study immediately. This can show whether any mistakes were made during extraction, and easily allows the extractor to check the results of their labour.
 
 However, a disadvantage of R Studio is that R Markdown files are always wrapped. Wrapping means that to prevent the need for horizontal scrolling, long lines of text are displayed on multiple lines. Wrapping is almost always very useful. Text processors, for example, always wrap; text in books is always wrapped; and so is online content.
 
-However, extraction scripts contain very long lines when closely related entities are extracted in list form; in that case, their explanation and examples are placed behind the entities and values to extract, 
+However, extraction scripts contain very long lines when closely related entities are extracted in list form; in that case, their explanation and examples are placed as comments (preceded by R's comment symbol, `#`) behind the entities and values to extract, which can look very confusing if lines are wrapped.
 
-The second is to use an external editor. For extractors working in a Windows environment, Notepad++ is recommended; for extractors working in a Mac OS environment, BBEDit is recommended (extractors using a Linux distro probably already have their preferred text editors).
+RStudio does use syntax coloring to clearly indicate which parts of the extraction script are comments and which parts are values, but still, extractors might find this confusing.
+
+The second option, therefore, is to use an external editor. For extractors working in a Windows environment, Notepad++ is recommended; for extractors working in a Mac OS environment, BBEdit is recommended (extractors using a Linux distro probably already have their preferred text editors).
 
 ![`r figCap('Notepad++ when no file has been loaded yet')`](../img/notepadplusplus--empty.png)
 
-https://www.barebones.com/products/bbedit/download.html
+#### Downloading the software
 
+Working with RStudio requires installing R as well.
+
+- R can be downloaded from [this link](https://cloud.r-project.org/) (specifically from [this link](https://cloud.r-project.org/bin/windows/base/) for Windows, from [this link](https://cloud.r-project.org/bin/macosx/) for MacOS, and through [this link](https://cloud.r-project.org/bin/linux/) for Linux).
+- RStudio can be downloaded from [this link](https://www.rstudio.com/products/rstudio/download/#download).
+- Notepad++ can be downloaded from [this link](https://notepad-plus-plus.org/download).
+- BBEdit can be downloaded from [this link](https://www.barebones.com/products/bbedit/download.html) (the free version suffices).
+
+#### The extraction process
+
+When extracting articles, an extractor takes the following steps:
+
+- Open the article (this usually means opening the relevant PDF in the `pdfs` directory).
+
+- Copy the extraction script template to a new file in the `extraction` directory.
+
+- Give the new file a name conform the following convention: a list of the last names of all authors, all in lower case (i.e. without capitals), separated by dashes (`-`), and ending with the year of the study, separated from the list of author names by two dashes (`--`), and ending with the extraction script extension (`.rxs.Rmd`). Thus, the filename should look something like this: `boys-marsden--2003.html`.
+
+- Open the new (and newly renamed) extraction script in the editor of choice (see the 'Software considerations' section above).
+
+- If you haven't looked at the extraction script yet, study it. If you encounter anything you're uncertain about, contact another team member to ask them to explain it.
+
+- In the extraction script, scroll to the line containing the text `START: study (ROOT)`.
+
+- Scroll downwards through the extraction script, completing each extractable entity as you encounter it. Often, the first entity will be the study identifier (usually a Digital Object Identifier or DOI).
+
+- Once you have completed the extraction script, if you use RStudio, you can 'render' or 'knit' it by clicking the 'Knit' button at the top. This will show you what you extracted. If you made any errors (e.g. forgot a comma, or a single or double quote, or forgot to open or close a parenthesis, or mistyped a variable name, etc), this should become clear at this point. Correct any errors. (If you use another editor, you won't be able to check this at this point.)
+
+- Repeat these steps for the next article.
+
+If you run into any problems, clearly write them down, and depending on what you agreed with your team members, accumulate these issues and discuss them at the next meeting, or immediately pass them on using whichever medium you use.
 

@@ -10,7 +10,7 @@
 "Size","Sample size of subsample","subsample.N","integer",NA,NA,NA,"subsample",NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Type of study","Whether the study was qualitative, quantitative, mixed methods, or a review","methodType","categorical","""qualitative"" || ""quantitative"" || ""mixed methods"" || ""review""",NA,NA,"methods",NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Variables","The variables as used/observed in this study (i.e. operationalisations or an aspects)","variables",NA,NA,NA,NA,"methods",NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Operationalisation","An operationalisation (measurement or manipulation) used in the study","operationalisation",NA,NA,NA,NA,"variables",NA,NA,NA,TRUE,NA,NA,NA,NA,NA
+"Operationalisation","An operationalisation (measurement or manipulation) used in the study","operationalisation",NA,NA,NA,NA,"variables",NA,NA,NA,TRUE,NA,TRUE,NA,NA,NA
 "Operationalisation Name","A unique name (in this study), to be able to refer to this operationalisation later, and to easily find it afterwards","oper.name","string.mandatory",NA,NA,NA,"operationalisation",NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Moment","Moment(s) this variable was measured/manipulated.","oper.moment","integer.multi",NA,"1",NA,"operationalisation",NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Type of operationalisation","Whether this variable is a manipulation, a single measurement, or an aggregate","oper.type","categorical","""manipulation"" || ""item"" || ""aggregate""",NA,NA,"operationalisation",NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -41,8 +41,8 @@
 "Comment","Any relevant comments the coder wants to add","uni.comment","string",NA,NA,NA,"univariate",NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Association","An association between two variables.","association",NA,NA,NA,NA,"results",NA,NA,NA,TRUE,NA,TRUE,NA,NA,NA
 "Name of result","A unique name (in this study), to easily find / meta-analyse / group this result later","assoc.name","string.mandatory",NA,NA,"""mainHypothesisTest"" || ""manipulationCheck""","association",NA,NA,NA,NA,NA,NA,NA,NA,NA
-"First variable","The name of the first variable.","assoc.variable1","string.entityRef.mandatory",NA,NA,NA,"association","oper.name",NA,NA,NA,NA,NA,NA,NA,NA
-"Values of first variable","Values this variable pertains to (e.g. in post hoc analyses).","assoc.var1name","string.fieldRef.optional",NA,NA,NA,"association",NA,"oper.values",NA,NA,NA,NA,NA,NA,NA
+"First variable","The name of the first variable.","assoc.var1name","string.entityRef.mandatory",NA,NA,NA,"association","oper.name",NA,NA,NA,NA,NA,NA,NA,NA
+"Values of first variable","Values this variable pertains to (e.g. in post hoc analyses).","assoc.var1values","string.fieldRef.optional",NA,NA,NA,"association",NA,"oper.values",NA,NA,NA,NA,NA,NA,NA
 "Measurement moment of first variable","To which measurement moment of the first variable this association pertains.","assoc.var1moment","string.fieldRef.optional",NA,NA,NA,"association",NA,"oper.moment",NA,NA,NA,NA,NA,NA,NA
 "Second variable","The name of the second variable.","assoc.var2name","string.entityRef.mandatory",NA,NA,NA,"association","oper.name",NA,NA,NA,NA,NA,NA,NA,NA
 "Values of second variable","Values this variable pertains to (e.g. in post hoc analyses).","assoc.var2values","string.fieldRef.optional",NA,NA,NA,"association",NA,"oper.values",NA,NA,NA,NA,NA,NA,NA
